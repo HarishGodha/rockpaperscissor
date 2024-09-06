@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Rock-Paper-Scissors Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      padding-top: 50px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Rock-Paper-Scissors Game</h1>
+  
+  <button onclick="playGame('rock')">Rock</button>
+  <button onclick="playGame('paper')">Paper</button>
+  <button onclick="playGame('scissor')">Scissor</button>
+
+  <div id="result"></div> <!-- Div to display result -->
+
+  <script>
+    function playGame(playerMove) {
+      const randN = Math.random();
+      let compMove = '';
+
+      // Computer randomly selects Rock, Paper, or Scissor
+      if (randN >= 0 && randN < 1 / 3) {
+        compMove = 'rock';
+      } else if (randN >= 1 / 3 && randN < 2 / 3) {
+        compMove = 'paper';
+      } else {
+        compMove = 'scissor';
+      }
+
+      let result = '';
+
+      // Determine the result based on player's and computer's move
+      if (compMove === playerMove) {
+        result = 'It\'s a tie!';
+      } else if (
+        (playerMove === 'rock' && compMove === 'scissor') ||
+        (playerMove === 'paper' && compMove === 'rock') ||
+        (playerMove === 'scissor' && compMove === 'paper')
+      ) {
+        result = 'You win!';
+      } else {
+        result = 'You lose!';
+      }
+
+      // Display the result in the div
+      document.getElementById('result').innerHTML = 
+        'You picked <strong>' + playerMove + '</strong>, computer picked <strong>' + compMove + '</strong>. <br>' + result;
+    }
+  </script>
+</body>
+</html>
